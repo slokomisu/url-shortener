@@ -26,7 +26,7 @@ simpledb.init(options, function (err, db) {
                 } else {
                     res.json(
                         {
-                            'original-url': url.url,
+                            'original-url': paramUrl,
                             'short-url': 'https://' + req.hostname + '/' + url.id
                         }
                     )
