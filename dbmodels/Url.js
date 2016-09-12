@@ -10,5 +10,11 @@ exports.virtuals = {
         get : function () {
             return this._id;
         }
+    },
+    
+    url : {
+        get : function () {
+            return this.url;
+        }
     }
 }

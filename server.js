@@ -22,11 +22,11 @@ simpledb.init(options, function (err, db) {
             var url = new db.Url({url : paramUrl});
             url.save(function (err) {
                 if (err) {
-                    console.log(err)
+                    res.send(err)
                 } else {
                     res.json(
                         {
-                            'original-url': url,
+                            'original-url': url.url;
                             'short-url': 'https://' + req.hostname + '/' + url.id
                         }
                     )
