@@ -2,7 +2,7 @@ var express = require('express');
 var validUrl = require('valid-url');
 var simpledb = require('mongoose-simpledb');
 var options = {
-    connectionString: 'mongodb://localhost:27017/test',
+    connectionString: process.env.MONGOLAB_URI,
     autoIncrementNumberIds: true
 }
 
