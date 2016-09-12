@@ -10,7 +10,7 @@ var app = express();
 
 
 
-
+app.use(express.static('public'));
 
 
 simpledb.init(options, function (err, db) {
@@ -46,4 +46,4 @@ simpledb.init(options, function (err, db) {
 })
 
 
-app.listen(process.env.PORT);
+app.listen(process.env.PORT || 3000);
