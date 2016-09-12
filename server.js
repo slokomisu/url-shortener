@@ -2,7 +2,7 @@ var express = require('express');
 var validUrl = require('valid-url');
 var simpledb = require('mongoose-simpledb');
 var options = {
-    connectionString: process.env.MONGOLAB_URI,
+    connectionString: process.env.MONGOLAB_URL,
     autoIncrementNumberIds: true
 }
 
@@ -24,17 +24,27 @@ simpledb.init(options, function (err, db) {
                 if (err) {
                     console.log(err)
                 } else {
-                    res.send("URL SHORTEN SUCCESSFUL.\nOld Link: " + paramUrl 
-                    + "\nNew Link: http://localhost:8080/" + url.id );
+                    res.json(
+                        {
+                            'original-url': url,
+                            'short-url': 'https://' + req.hostname + '/' + url.id
+                        }
+                    )
                 }
             })
+        } else {
+            res.json(
+                {
+                    'error' : 'Invalid URL. Check for typos.'
+                }
+            )
         }
     })
 
     app.get('/:id', function (req, res) {
         db.Url.findOne( {_id : req.params.id } , function (err, url) {
             if (err) {
-                res.send(err)
+                res.send("Could not find link. Are you sure you typed in the correct ID?")
             } else {
                 res.redirect(url.url);
             }
