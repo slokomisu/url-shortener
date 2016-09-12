@@ -10,7 +10,7 @@ var app = express();
 
 
 
-app.use(express.static('public'));
+//app.use(express.static('public'));
 
 
 simpledb.init(options, function (err, db) {
@@ -41,12 +41,13 @@ simpledb.init(options, function (err, db) {
         }
     })
 
-    app.get('/:id', function (req, res) {
-        db.Url.findOne( {_id : req.params.id } , function (err, url) {
+    app.get('/:foo', function (req, res) {
+        console.log(req.params);
+        db.Url.find(function (err, url) {
             if (err) {
-                res.send("Could not find link. Are you sure you typed in the correct ID? " + req.params.id)
+                res.send("Could not find link. Are you sure you typed in the correct ID? " + req.params.foo)
             } else {
-                res.redirect(url.url);
+                console.log(url);
             }
         })
     })
@@ -56,4 +57,4 @@ simpledb.init(options, function (err, db) {
 })
 
 
-app.listen(process.env.PORT);
+app.listen(process.env.PORT || 8080);
