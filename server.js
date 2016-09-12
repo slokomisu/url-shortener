@@ -35,7 +35,7 @@ simpledb.init(options, function (err, db) {
         } else {
             res.json(
                 {
-                    'error' : 'Invalid URL. Check for typos.'
+                    'error' : 'Invalid URL. Must be in form of http://www.example.com'
                 }
             )
         }
