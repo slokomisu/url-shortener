@@ -43,7 +43,7 @@ simpledb.init(options, function (err, db) {
 
     app.get('/:foo', function (req, res) {
         console.log(req.params);
-        db.Url.find(function (err, url) {
+        db.Url.findOne(function (err, url) {
             if (err) {
                 res.send("Could not find link. Are you sure you typed in the correct ID? " + req.params.foo)
             } else {
