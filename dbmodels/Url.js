@@ -14,7 +14,7 @@ exports.virtuals = {
 
     url : {
         get : function () {
-            return this.url;
+            return this.urlLong;
         }
     }
 }
