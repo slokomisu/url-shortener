@@ -2,7 +2,7 @@ var ObjectId = require('mongoose-simpledb').Types.ObjectId;
 
 exports.schema = {
     _id : Number,
-    urlLong : String,
+    url : String,
 }
 
 exports.virtuals = {
@@ -12,9 +12,9 @@ exports.virtuals = {
         }
     },
 
-    url : {
-        get : function () {
-            return this.urlLong;
-        }
-    }
+    // url : {
+    //     get : function () {
+    //         return this.urlLong;
+    //     }
+    // }
 }

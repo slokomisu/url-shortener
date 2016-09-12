@@ -41,11 +41,18 @@ simpledb.init(options, function (err, db) {
         }
     })
 
-    app.get('/:foo', function (req, res) {
+    /**
+     * Let it be known that it took me ALL FUCKING DAY to figure out
+     * that the GET /favicon.ico requests were fucking everything up. */    
+    app.get('/favicon.ico', (req, res) => {
+        res.sendStatus(200);
+    })
+
+    app.get('/:id', (req, res) => {
         console.log(req.params);
-        db.Url.findOne(function (err, url) {
+        db.Url.findOne({_id: req.params.id} ,function (err, url) {
             if (err) {
-                res.send("Could not find link. Are you sure you typed in the correct ID? " + req.params.foo)
+                res.send("Could not find link. Are you sure you typed in the correct ID? " + req.params.id)
             } else {
                 res.redirect(url.url);
             }
