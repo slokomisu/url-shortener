@@ -47,7 +47,7 @@ simpledb.init(options, function (err, db) {
             if (err) {
                 res.send("Could not find link. Are you sure you typed in the correct ID? " + req.params.foo)
             } else {
-                console.log(url);
+                res.redirect(url.url);
             }
         })
     })
